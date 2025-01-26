@@ -1,0 +1,6 @@
+Makefile
+*.a
+*.cmake
+CMakeFiles
+CMakeCache.txt
+lab1

@@ -31,14 +31,15 @@
 	 * @brief Optional GPU kernel to reduce a set of partial sums into a smaller set
 	 *			by summing a subset into a single value
 	 * 
-	 * @param pSums 		pointer to memory location to store partial counts
-	 * @param totals 		pointer to memory location to store reduced counts
-	 * @param pSumSize 		size of pSums array
-	 * @param reduceSize 	size of reduced totals array
+	 * @param pSums 		uint64_t	pointer to memory location to store partial counts
+	 * @param totals 		uint64_t	pointer to memory location to store reduced counts
+	 * @param pSumSize 		uint64_t	size of pSums array
+	 * @param totalsSize 	uint64_t	size of reduced totals array
+	 * @param reduceSize 	uint64_t	number of pSums summed by each reduce thread
 	 * @return void 
 	 */
 	extern __global__ void reduceCounts (uint64_t * pSums, uint64_t * totals, 
-		uint64_t pSumSize, uint64_t reduceSize);
+		uint64_t pSumSize, uint64_t totalsSize, uint64_t reduceSize);
 
 	/**
 	 * @brief Entrypoint for GPU SAXPY application
