@@ -40,7 +40,7 @@ int runGpuSaxpy(int vectorSize) {
 	vectorInit(b, vectorSize);
 	//	C = B
 	std::memcpy(c, b, vectorSize * sizeof(float));
-	float scale = 2.0f;
+	float scale = 2.1f;
 
 	#ifndef DEBUG_PRINT_DISABLE 
 		printf("\n Adding vectors : \n");
@@ -171,7 +171,7 @@ double estimatePi(uint64_t generateThreadCount, uint64_t sampleSize,
 	double approxPi = 0;
 
 	// Insert code here
-	uint64_t /** counts*/, * partial_sums;
+	uint64_t /** counts,*/ * partial_sums;
 	//counts = (uint64_t *) malloc(generateThreadCount * sizeof(uint64_t));
 	partial_sums = (uint64_t *) malloc(reduceThreadCount * sizeof(uint64_t));
 
