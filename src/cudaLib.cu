@@ -182,9 +182,9 @@ double estimatePi(uint64_t generateThreadCount, uint64_t sampleSize,
 	cudaDeviceProp props;
   cudaGetDeviceProperties(&props, 0);
 
-	generatePoints<<< ceil(generateThreadCount/props.maxThreadsPerBlock), props.maxThreadsPerBlock >>>(gpu_counts, generateThreadCount, sampleSize);
+	generatePoints<<< (int)ceil((double)(generateThreadCount)/(double)(props.maxThreadsPerBlock)), props.maxThreadsPerBlock >>>(gpu_counts, generateThreadCount, sampleSize);
 	
-	reduceCounts<<< ceil(reduceThreadCount/props.maxThreadsPerBlock), props.maxThreadsPerBlock >>>(gpu_counts, gpu_partial_sums, generateThreadCount, reduceThreadCount, reduceSize);
+	reduceCounts<<< (int)ceil((double)(reduceThreadCount)/(double)(props.maxThreadsPerBlock)), props.maxThreadsPerBlock >>>(gpu_counts, gpu_partial_sums, generateThreadCount, reduceThreadCount, reduceSize);
 
 	uint64_t countBytes = generateThreadCount * sizeof(uint64_t);
 	uint64_t partialBytes = reduceThreadCount * sizeof(uint64_t);
